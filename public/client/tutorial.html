@@ -1,0 +1,130 @@
+<!-- This is KM CMS -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <!--link rel="manifest" href="manifest.json">-->
+  <link rel="icon" href="images/intakebook_sdt_logo.png" type="image/png" />
+  <title>Tutorial </title>
+  <script src="js/jquery.min.js"></script>
+</head>
+<body id="body">
+
+    <input type="text"> <button  class="val">Click</button><br>
+
+    <select id="select">
+        <option value="me">AK Man.</option>
+        <option value="you">ASD Khine</option>
+    </select>
+    <button   class="select">Click</button><br>
+
+    <input id="checkbox" type="checkbox" value="Love"> Finish <button  class="checkbox">Click</button><br>
+
+    <input type="radio" name="gender" value="male" > Man
+    <input type="radio" name="gender" value="female" > Girl
+    <button  class="radio">Click</button> <br>
+    
+    <input type="text" id="input_id" class="input_class"> <button  class="class_id">Click</button><br>
+
+    <input type="text"> <button  class="disabled">Click</button><br>
+
+
+    <table border="1">
+        <tr id="1" class="1">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td><button class="td"> Get ID </button></td>
+        </tr>
+        <tr id="2" class="2">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td><button class="td"> Get ID </button></td>
+        </tr>
+        <tr id="2" class="2">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td><button class="remove_td"> Remove This Row </button></td>
+        </tr>
+        <tr id="2" class="2">
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td><button class="remove_td"> Remove This Row </button></td>
+        </tr>
+    </table>
+
+
+    <div class="a">
+        AddClass and Remove Class
+    </div>
+    <button>Click</button>
+    <br>
+    <input type="checkbox" value="a" class="selectOption">
+    <input type="checkbox" value="b" class="selectOption">
+    <input type="checkbox" value="c" class="selectOption">
+    <input type="checkbox" value="d" class="selectOption">
+    <button class="getSelectedCheck">Click</button>
+
+    <br>
+    <button class="print">Print</button>
+    <script>
+$('document').ready(function(){
+    console.log("document is ready");
+    $("button.print").click(function(){
+        alert("print");
+        var newWin = window.open("","Print-Window");
+        newWin.document.open();
+        newWin.document.write(document.getElementById("body").innerHTML);
+        newWin.print();
+        //newWin.document.write("<body onload='window.print();window.close();'> <p style='color:blue'>Hello para 1</p><p>Hello para 2</p> </body>");
+        newWin.document.close();
+    });
+    $("button.getSelectedCheck").click(function(){
+        var str = "";
+        $(".selectOption").each(function(){
+            if($(this).is(":checked")){
+                str += $(this).val() + " ";
+            }
+        });
+        alert("selected check box(s) =>  "+str);
+    });
+    $("button.td").click(function(){
+        alert("ID  "+$(this).parent().parent().attr("id") + ", CLASS : "+$(this).parent().parent().attr('class'));
+    });
+    $("button.remove_td").click(function(){
+        $(this).parent().parent().remove();
+    });
+    $("button.val").click(function(){
+        alert("Value is "+$(this).prev().val());
+    });
+    $("button.select").click(function(){
+        alert("Value : "+ $(this).prev().val()+ ", Text : "+$("#select option:selected").text());
+    });
+    $("button.checkbox").click(function(){
+        alert("Check Status : "+ document.getElementById('checkbox').checked);
+    });
+    $("button.radio").click(function(){
+        alert("Radio Status : "+ $("input[type='radio']:checked").val());
+    });
+    $("button.class_id").click(function(){
+        alert("Class  : "+ $(this).prev().attr('class')+ " ID "+$(this).prev().attr('id'));
+    });
+    $("button.disabled").click(function(){
+        $(this).prev().attr('disabled','disabled');
+        //alert("disabled");
+    });
+
+});
+    </script>
+</body>
+</html>
